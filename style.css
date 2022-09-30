@@ -1,5 +1,41 @@
 body {
+  min-height: 100vh;
+  max-width: 1000px;
 
-background-color: chartreuse;
+  margin: 0;
+  background-color: burlywood;
 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("./images/body-bg.jpg");
+}
+
+.main {
+  margin-left: 300px;
+  display: grid;
+  grid-template-columns: 40% 50% 20%;
+  grid-template-rows: 11% 60% 15%;
+  min-height: 100vh;
+  justify-content: center;
+  /* align-content: center; */
+
+  gap: 20px;
+}
+
+#start-menu {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  border: 7px solid darkred;
+
+  border-style: ridge;
+
+  width: 600px;
+  height: 700px;
+}
+
+#my-canvas {
+  margin: 7px;
+  background-color: black;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
 }
