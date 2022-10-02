@@ -13,7 +13,7 @@ body {
 .main {
   margin-left: 300px;
   display: grid;
-  grid-template-columns: 40% 50% 20%;
+  grid-template-columns: 37% 50% 20%;
   grid-template-rows: 11% 60% 15%;
   min-height: 100vh;
   justify-content: center;
@@ -35,7 +35,7 @@ body {
 
 #my-canvas {
   margin: 7px;
-  background-color: black;
+  background-color: burlywood;
   grid-column: 2 / 3;
   grid-row: 2 / 3;
 }
