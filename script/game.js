@@ -35,7 +35,10 @@ class Game {
     ctx.clearRect(0, 0, canvas.Width, canvas.height);
 
     // * 2. Acciones y movimientos de los elementos
-
+    
+    this.rabbitClass.movementRabbit()
+    this.rabbitClass.wallCollideRabbit()
+    
     // * 3. Dibujado de los elementos
     this.drawFloor();
     this.humanClass.drawHuman();

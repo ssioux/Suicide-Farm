@@ -10,7 +10,7 @@ class Chicken {
       this.y = 100;
       this.w = 60;
       this.h = 60;
-      this.speed = 1
+      
     }
     // CLASS METHODS
   
@@ -18,10 +18,11 @@ class Chicken {
     drawChicken = () => {
       ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
     };
+
+    moveChicken = () => {
+
+
+    }
+
+
   }
-
-
-
-// CLASS METHODS
-
-// drawChicken
