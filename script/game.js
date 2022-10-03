@@ -17,18 +17,23 @@ class Game {
     this.rabbitCage = [];
     // Others
     this.frames = 0;
+    this.gameOn = true;
   }
 
   // ! METHODS
 
-  // addPig
-  // addChicken
+  gameOver = () => {
+    this.gameOn = false;
+    canvas.style.display = "none";
+    gameOverScreen.style.display = "grid";
+  };
+
+  // addElements
   addChicken = () => {
     if (this.frames % 180 === 0) {
-      let randomChickenX = Math.random() * 100;
-      let randomChickenY = Math.random() * 100;
-      let rChickenX = Math.floor(randomChickenX);
-      let rChickenY = Math.floor(randomChickenY);
+ 
+      let rChickenX = Math.floor(Math.random() * 100);
+      let rChickenY = Math.floor(Math.random() * 100);
 
       //let randomChickenDX = Math.random() * 2;
       //let randomChickenDY = Math.random() * 2;
@@ -41,8 +46,9 @@ class Game {
   };
 
   addRabbit = () => {
-    if (this.frames % 360 === 0) { // 6 secs
- 
+    if (this.frames % 360 === 0) {
+      // 6 secs
+
       let rRabbitX = Math.floor(Math.random() * (canvas.width - 550) + 550);
       let rRabbitY = Math.floor(Math.random() * (canvas.height - 200) + 200);
 
@@ -52,27 +58,37 @@ class Game {
   };
 
   addPig = () => {
-    if (this.frames % 300 === 0) { // 5 secs
+    if (this.frames % 300 === 0) {
+      // 5 secs
       let newPig = new Pig();
       this.pigCage.push(newPig);
     }
   };
 
- 
   chickenHumanWound = () => {
-
     this.chickenCage.forEach((eachChicken) => {
-    if (
-      this.humanClass.x < eachChicken.x + eachChicken.w &&
-      this.humanClass.x + this.humanClass.w > eachChicken.x &&
-      this.humanClass.y < eachChicken.y + eachChicken.h &&
-      this.humanClass.h + this.humanClass.y > eachChicken.y
-    ) {
-      console.log("te muerdo listo!")
-    }
-
-  });
-}
+      if (
+        this.humanClass.x < eachChicken.x + eachChicken.w &&
+        this.humanClass.x + this.humanClass.w > eachChicken.x &&
+        this.humanClass.y < eachChicken.y + eachChicken.h &&
+        this.humanClass.h + this.humanClass.y > eachChicken.y
+      ) {
+        this.gameOver()
+      }
+    });
+  };
+  rabbitHumanWound = () => {
+    this.rabbitCage.forEach((eachRabbit) => {
+      if (
+        this.humanClass.x < eachRabbit.x + eachRabbit.w &&
+        this.humanClass.x + this.humanClass.w > eachRabbit.x &&
+        this.humanClass.y < eachRabbit.y + eachRabbit.h &&
+        this.humanClass.h + this.humanClass.y > eachRabbit.y
+      ) {
+        this.gameOver()
+      }
+    });
+  };
   // rabbitHumanWound = () => {}
   // pigHumanWound = () => {}
 
@@ -83,7 +99,7 @@ class Game {
   };
   // gameOver
 
-  
+
 
   gameLoop = () => {
     this.frames = this.frames + 1;
@@ -98,13 +114,15 @@ class Game {
       eachPig.movementPig();
     });
     //          Rabbit addLoop
-    this.addRabbit()
+    this.addRabbit();
     this.rabbitCage.forEach((eachRabbit) => {
       eachRabbit.movementRabbit();
     });
     this.rabbitCage.forEach((eachRabbit) => {
       eachRabbit.wallCollideRabbit();
     });
+
+    this.rabbitHumanWound()
 
     //         Chicken addLoop
     this.addChicken();
@@ -115,7 +133,7 @@ class Game {
       eachChicken.wallCollideChicken();
     });
 
-    this.chickenHumanWound()
+    this.chickenHumanWound();
     //this.chickenClass.movementChicken()
     //this.rabbitClass.movementRabbit();
     //this.rabbitClass.wallCollideRabbit();
@@ -140,8 +158,8 @@ class Game {
 
     //this.chickenClass.drawChicken();
     // * 4. Control de la recursion
-
+    if (this.gameOn === true){
     requestAnimationFrame(this.gameLoop);
+    }
   };
 }
-

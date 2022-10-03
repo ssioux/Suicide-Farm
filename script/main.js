@@ -10,7 +10,7 @@ const gameOverScreen = document.querySelector("#gameover-screen");
 const reStartBtn = document.querySelector("#restart-btn");
 
 let gameClass;
-
+console.log(gameOverScreen);
 // ! STATE MANAGEMENT FUNCTIONS
 // startGame
 const startGame = () => {
@@ -22,8 +22,14 @@ const startGame = () => {
 };
 
 // reStartGame
+const reStartGame = () => {
+  
+  gameOverScreen.style.display = "none";
+  canvas.style.display = "grid";
+  gameClass = new Game();
+  gameClass.gameLoop();
+}
 
-const reStartGame = () => {};
 
 // ! ADD EVENT LISTENERS
 
