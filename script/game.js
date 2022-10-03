@@ -36,8 +36,12 @@ class Game {
 
     // * 2. Acciones y movimientos de los elementos
     
+    //this.pigClass.wallCollidePig()
+    this.chickenClass.wallCollideChicken()
+    this.chickenClass.movementChicken()
     this.rabbitClass.movementRabbit()
     this.rabbitClass.wallCollideRabbit()
+    this.pigClass.movementPig();
     
     // * 3. Dibujado de los elementos
     this.drawFloor();

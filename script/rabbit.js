@@ -16,7 +16,7 @@ class Rabbit {
     }
     // CLASS METHODS
   
-    // drawHuman
+    // draw
     drawRabbit = () => {
       ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
     };
@@ -42,6 +42,3 @@ class Rabbit {
 
 
 
-// CLASS METHODS
-
-// drawRabbit
