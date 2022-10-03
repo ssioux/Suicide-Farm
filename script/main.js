@@ -31,13 +31,19 @@ startBtn.addEventListener("click", startGame);
 reStartBtn.addEventListener("click", reStartGame);
 
 window.addEventListener("keydown", (event) => {
-  if (event.code === "ArrowRight" && gameClass.humanClass.x < canvas.width - gameClass.humanClass.w) {
-    gameClass.humanClass.x = gameClass.humanClass.x +15 
-  } else if (event.code === "ArrowLeft" && gameClass.humanClass.x > 0){
-    gameClass.humanClass.x = gameClass.humanClass.x -15
-  } else if (event.code === "ArrowUp" && gameClass.humanClass.y > 0){
-    gameClass.humanClass.y = gameClass.humanClass.y -15
-  } else if (event.code === "ArrowDown" && gameClass.humanClass.y < canvas.height -gameClass.humanClass.h){
-    gameClass.humanClass.y = gameClass.humanClass.y +15
+  if (
+    event.code === "ArrowRight" &&
+    gameClass.humanClass.x < canvas.width - gameClass.humanClass.w
+  ) {
+    gameClass.humanClass.x = gameClass.humanClass.x + 15;
+  } else if (event.code === "ArrowLeft" && gameClass.humanClass.x > 0) {
+    gameClass.humanClass.x = gameClass.humanClass.x - 15;
+  } else if (event.code === "ArrowUp" && gameClass.humanClass.y > 0) {
+    gameClass.humanClass.y = gameClass.humanClass.y - 15;
+  } else if (
+    event.code === "ArrowDown" &&
+    gameClass.humanClass.y < canvas.height - gameClass.humanClass.h
+  ) {
+    gameClass.humanClass.y = gameClass.humanClass.y + 15;
   }
-})
+});

@@ -1,11 +1,11 @@
 // * CHICKEN
 
 class Chicken {
-  constructor() {
+  constructor(xParam, yParam) {
     this.img = new Image();
     this.img.src = "./images/chicken.png";
-    this.x = 10;
-    this.y = 100;
+    this.x = xParam;
+    this.y = yParam;
     this.w = 60;
     this.h = 60;
 

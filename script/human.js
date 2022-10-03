@@ -15,4 +15,5 @@ class Human {
   drawHuman = () => {
     ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
   };
+  
 }
