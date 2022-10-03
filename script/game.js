@@ -58,9 +58,21 @@ class Game {
     }
   };
 
-  // addRabbit
+ 
+  chickenHumanWound = () => {
 
-  //chickenHumanWound = () => {};
+    this.chickenCage.forEach((eachChicken) => {
+    if (
+      this.humanClass.x < eachChicken.x + eachChicken.w &&
+      this.humanClass.x + this.humanClass.w > eachChicken.x &&
+      this.humanClass.y < eachChicken.y + eachChicken.h &&
+      this.humanClass.h + this.humanClass.y > eachChicken.y
+    ) {
+      console.log("te muerdo listo!")
+    }
+
+  });
+}
   // rabbitHumanWound = () => {}
   // pigHumanWound = () => {}
 
@@ -70,6 +82,8 @@ class Game {
     ctx.drawImage(this.floor, 0, 0, canvas.width, canvas.height);
   };
   // gameOver
+
+  
 
   gameLoop = () => {
     this.frames = this.frames + 1;
@@ -100,6 +114,8 @@ class Game {
     this.chickenCage.forEach((eachChicken) => {
       eachChicken.wallCollideChicken();
     });
+
+    this.chickenHumanWound()
     //this.chickenClass.movementChicken()
     //this.rabbitClass.movementRabbit();
     //this.rabbitClass.wallCollideRabbit();
@@ -128,3 +144,4 @@ class Game {
     requestAnimationFrame(this.gameLoop);
   };
 }
+
