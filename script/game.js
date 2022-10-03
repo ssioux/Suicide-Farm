@@ -89,6 +89,21 @@ class Game {
       }
     });
   };
+
+  pigHumanWound = () => {
+    this.pigCage.forEach((eachPig) => {
+      if (
+        this.humanClass.x < eachPig.x + eachPig.w &&
+        this.humanClass.x + this.humanClass.w > eachPig.x &&
+        this.humanClass.y < eachPig.y + eachPig.h &&
+        this.humanClass.h + this.humanClass.y > eachPig.y
+      ) {
+        this.gameOver()
+      } else if (eachPig.y > canvas.height) {
+        this.gameOver()
+      }
+    });
+  };
   // rabbitHumanWound = () => {}
   // pigHumanWound = () => {}
 
@@ -113,6 +128,8 @@ class Game {
     this.pigCage.forEach((eachPig) => {
       eachPig.movementPig();
     });
+
+    this.pigHumanWound()
     //          Rabbit addLoop
     this.addRabbit();
     this.rabbitCage.forEach((eachRabbit) => {
