@@ -3,11 +3,11 @@
 
 
 class Rabbit {
-    constructor() {
+    constructor(xParam, yParam) {
       this.img = new Image();
       this.img.src = "./images/rabbit.png";
-      this.x = 550;
-      this.y = 200;
+      this.x = xParam;
+      this.y = yParam;
       this.w = 40;
       this.h = 40;
       this.xDirection = -1

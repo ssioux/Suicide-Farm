@@ -8,9 +8,9 @@ class Game {
     this.floor.src = "./images/floor.jpeg";
     // Objets
     this.humanClass = new Human();
-    this.pigClass = new Pig();
+    //this.pigClass = new Pig();
     //this.chickenClass = new Chicken();
-    this.rabbitClass = new Rabbit();
+    //this.rabbitClass = new Rabbit();
     // ArraysObjets
     this.chickenCage = [];
     this.pigCage = [];
@@ -30,14 +30,37 @@ class Game {
       let rChickenX = Math.floor(randomChickenX);
       let rChickenY = Math.floor(randomChickenY);
 
+      //let randomChickenDX = Math.random() * 2;
+      //let randomChickenDY = Math.random() * 2;
+      //let rChickenDX = Math.floor(randomChickenDX);
+      //let rChickenDY = Math.floor(randomChickenDY);
+
       let newChicken = new Chicken(rChickenX, rChickenY);
       this.chickenCage.push(newChicken);
     }
   };
 
+  addRabbit = () => {
+    if (this.frames % 360 === 0) { // 6 secs
+ 
+      let rRabbitX = Math.floor(Math.random() * (canvas.width - 550) + 550);
+      let rRabbitY = Math.floor(Math.random() * (canvas.height - 200) + 200);
+
+      let newRabbit = new Rabbit(rRabbitX, rRabbitY);
+      this.rabbitCage.push(newRabbit);
+    }
+  };
+
+  addPig = () => {
+    if (this.frames % 300 === 0) { // 5 secs
+      let newPig = new Pig();
+      this.pigCage.push(newPig);
+    }
+  };
+
   // addRabbit
 
-  chickenHumanWound = () => {};
+  //chickenHumanWound = () => {};
   // rabbitHumanWound = () => {}
   // pigHumanWound = () => {}
 
@@ -55,6 +78,21 @@ class Game {
     ctx.clearRect(0, 0, canvas.Width, canvas.height);
 
     // * 2. Acciones y movimientos de los elementos
+    //             Pig addLoop
+    this.addPig();
+    this.pigCage.forEach((eachPig) => {
+      eachPig.movementPig();
+    });
+    //          Rabbit addLoop
+    this.addRabbit()
+    this.rabbitCage.forEach((eachRabbit) => {
+      eachRabbit.movementRabbit();
+    });
+    this.rabbitCage.forEach((eachRabbit) => {
+      eachRabbit.wallCollideRabbit();
+    });
+
+    //         Chicken addLoop
     this.addChicken();
     this.chickenCage.forEach((eachChicken) => {
       eachChicken.movementChicken();
@@ -63,15 +101,22 @@ class Game {
       eachChicken.wallCollideChicken();
     });
     //this.chickenClass.movementChicken()
-    this.rabbitClass.movementRabbit();
-    this.rabbitClass.wallCollideRabbit();
-    this.pigClass.movementPig();
+    //this.rabbitClass.movementRabbit();
+    //this.rabbitClass.wallCollideRabbit();
+    //this.pigClass.movementPig();
 
     // * 3. Dibujado de los elementos
     this.drawFloor();
     this.humanClass.drawHuman();
-    this.pigClass.drawPig();
-    this.rabbitClass.drawRabbit();
+    //this.pigClass.drawPig();
+    //this.rabbitClass.drawRabbit();
+    this.rabbitCage.forEach((eachRabbit) => {
+      eachRabbit.drawRabbit();
+    });
+
+    this.pigCage.forEach((eachPig) => {
+      eachPig.drawPig();
+    });
 
     this.chickenCage.forEach((eachChicken) => {
       eachChicken.drawChicken();
