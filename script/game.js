@@ -57,11 +57,46 @@ class Game {
           eachChicken.h + eachChicken.y > eachPotato.y
         ) {
           this.potatoReload.splice(indexPotato, 1)
-          this.chickenCage.splice(indexChicken,1)
+          this.chickenCage.splice(indexChicken, 1)
         }
       });
     });
   };
+
+  potatoPigHit = () => {
+    this.potatoReload.forEach((eachPotato, indexPotato) => {
+      
+      this.pigCage.forEach((eachPig, indexPig) => {
+        if (
+          eachPig.x < eachPotato.x + eachPotato.w &&
+          eachPig.x + eachPig.w > eachPotato.x &&
+          eachPig.y < eachPotato.y + eachPotato.h &&
+          eachPig.h + eachPig.y > eachPotato.y
+        ) {
+          this.potatoReload.splice(indexPotato, 1)
+          this.pigCage.splice(indexPig, 1)
+        }
+      });
+    });
+  };
+
+  potatoRabbitHit = () => {
+    this.potatoReload.forEach((eachPotato, indexPotato) => {
+      
+      this.rabbitCage.forEach((eachRabbit, indexRabbit) => {
+        if (
+          eachRabbit.x < eachPotato.x + eachPotato.w &&
+          eachRabbit.x + eachRabbit.w > eachPotato.x &&
+          eachRabbit.y < eachPotato.y + eachPotato.h &&
+          eachRabbit.h + eachRabbit.y > eachPotato.y
+        ) {
+          this.potatoReload.splice(indexPotato, 1)
+          this.rabbitCage.splice(indexRabbit, 1)
+        }
+      });
+    });
+  };
+
 
   addChicken = () => {
     if (this.frames % 180 === 0) {
@@ -164,6 +199,8 @@ class Game {
     this.rabbitHumanWound();
 
     this.potatoChickenHit();
+    this.potatoPigHit()
+    this.potatoRabbitHit()
 
     //         Chicken addLoop
     this.addChicken();
