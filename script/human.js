@@ -8,6 +8,8 @@ class Human {
     this.y = 620;
     this.w = 60;
     this.h = 50;
+    this.speed = 30;
+    this.lives = 3;
   }
   // CLASS METHODS
 
@@ -15,5 +17,4 @@ class Human {
   drawHuman = () => {
     ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
   };
-  
 }

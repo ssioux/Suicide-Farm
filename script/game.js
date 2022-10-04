@@ -8,6 +8,8 @@ class Game {
     this.floor.src = "./images/floor.jpeg";
     // Objets
     this.humanClass = new Human();
+    //this.potatoClass = new Potato();
+
     //this.pigClass = new Pig();
     //this.chickenClass = new Chicken();
     //this.rabbitClass = new Rabbit();
@@ -15,12 +17,23 @@ class Game {
     this.chickenCage = [];
     this.pigCage = [];
     this.rabbitCage = [];
+    this.potatoReload = [];
+
     // Others
     this.frames = 0;
     this.gameOn = true;
+    this.noShoot = true;
   }
 
+  ;
+
   // ! METHODS
+
+  //potatoHumansHand = () => {
+    
+  //  this.potatoClass.x = this.humanClass.x + 40
+  //  this.potatoClass.y = this.humanClass.y - 5
+  //} 
 
   gameOver = () => {
     this.gameOn = false;
@@ -28,17 +41,22 @@ class Game {
     gameOverScreen.style.display = "grid";
   };
 
-  // addElements
+  addPotato = () => {
+    
+      
+
+      
+      let newPotato = new Potato(this.humanClass.x + 40, this.humanClass.y - 5);
+      // newPotato.x = this.humanClass.x + 40
+      // newPotato.y = this.humanClass.y - 5
+      this.potatoReload.push(newPotato);
+    }
+  
+
   addChicken = () => {
     if (this.frames % 180 === 0) {
- 
       let rChickenX = Math.floor(Math.random() * 100);
       let rChickenY = Math.floor(Math.random() * 100);
-
-      //let randomChickenDX = Math.random() * 2;
-      //let randomChickenDY = Math.random() * 2;
-      //let rChickenDX = Math.floor(randomChickenDX);
-      //let rChickenDY = Math.floor(randomChickenDY);
 
       let newChicken = new Chicken(rChickenX, rChickenY);
       this.chickenCage.push(newChicken);
@@ -73,10 +91,11 @@ class Game {
         this.humanClass.y < eachChicken.y + eachChicken.h &&
         this.humanClass.h + this.humanClass.y > eachChicken.y
       ) {
-        this.gameOver()
+        this.gameOver();
       }
     });
   };
+
   rabbitHumanWound = () => {
     this.rabbitCage.forEach((eachRabbit) => {
       if (
@@ -85,7 +104,7 @@ class Game {
         this.humanClass.y < eachRabbit.y + eachRabbit.h &&
         this.humanClass.h + this.humanClass.y > eachRabbit.y
       ) {
-        this.gameOver()
+        this.gameOver();
       }
     });
   };
@@ -98,23 +117,16 @@ class Game {
         this.humanClass.y < eachPig.y + eachPig.h &&
         this.humanClass.h + this.humanClass.y > eachPig.y
       ) {
-        this.gameOver()
+        this.gameOver();
       } else if (eachPig.y > canvas.height) {
-        this.gameOver()
+        this.gameOver();
       }
     });
   };
-  // rabbitHumanWound = () => {}
-  // pigHumanWound = () => {}
 
-  // pigGoesOut = Lost
-  // drawFloor
   drawFloor = () => {
     ctx.drawImage(this.floor, 0, 0, canvas.width, canvas.height);
   };
-  // gameOver
-
-
 
   gameLoop = () => {
     this.frames = this.frames + 1;
@@ -129,7 +141,7 @@ class Game {
       eachPig.movementPig();
     });
 
-    this.pigHumanWound()
+    this.pigHumanWound();
     //          Rabbit addLoop
     this.addRabbit();
     this.rabbitCage.forEach((eachRabbit) => {
@@ -139,7 +151,7 @@ class Game {
       eachRabbit.wallCollideRabbit();
     });
 
-    this.rabbitHumanWound()
+    this.rabbitHumanWound();
 
     //         Chicken addLoop
     this.addChicken();
@@ -151,6 +163,25 @@ class Game {
     });
 
     this.chickenHumanWound();
+
+    //                -- Potato Conditions & Loops --
+    
+
+    //if (this.noShoot === true){
+    //  this.potatoHumansHand();
+    //}
+    this.potatoReload.forEach((eachPotato) => {
+      eachPotato.potatoDirection()
+    })
+
+    if (this.noShoot === false){
+          this.addPotato()
+          // this.potatoReload.forEach((eachPotato) => {
+          //   eachPotato.potatoDirection()
+          // })
+          this.noShoot = true
+    }
+
     //this.chickenClass.movementChicken()
     //this.rabbitClass.movementRabbit();
     //this.rabbitClass.wallCollideRabbit();
@@ -159,6 +190,9 @@ class Game {
     // * 3. Dibujado de los elementos
     this.drawFloor();
     this.humanClass.drawHuman();
+    this.potatoReload.forEach((eachPotato) => {
+      eachPotato.drawPotato()
+    })
     //this.pigClass.drawPig();
     //this.rabbitClass.drawRabbit();
     this.rabbitCage.forEach((eachRabbit) => {
@@ -175,8 +209,8 @@ class Game {
 
     //this.chickenClass.drawChicken();
     // * 4. Control de la recursion
-    if (this.gameOn === true){
-    requestAnimationFrame(this.gameLoop);
+    if (this.gameOn === true) {
+      requestAnimationFrame(this.gameLoop);
     }
   };
 }
