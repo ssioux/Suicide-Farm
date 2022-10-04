@@ -1,4 +1,4 @@
-console.log("testing");
+
 // ! GLOBAL VARIABLES
 
 const canvas = document.querySelector("#my-canvas");
@@ -10,11 +10,11 @@ const gameOverScreen = document.querySelector("#gameover-screen");
 const reStartBtn = document.querySelector("#restart-btn");
 
 let gameClass;
-console.log(gameOverScreen);
+
 // ! STATE MANAGEMENT FUNCTIONS
 // startGame
 const startGame = () => {
-  console.log("iniciando canvas");
+ 
   startScreen.style.display = "none";
   canvas.style.display = "grid";
   gameClass = new Game();
@@ -38,7 +38,7 @@ reStartBtn.addEventListener("click", reStartGame);
 
 window.addEventListener("keydown", (event) => {
   if (event.code === "Space"){
-    console.log("disparando patata")
+  
     gameClass.noShoot = false
   }
 })

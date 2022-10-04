@@ -25,15 +25,13 @@ class Game {
     this.noShoot = true;
   }
 
-  ;
-
   // ! METHODS
 
   //potatoHumansHand = () => {
-    
+
   //  this.potatoClass.x = this.humanClass.x + 40
   //  this.potatoClass.y = this.humanClass.y - 5
-  //} 
+  //}
 
   gameOver = () => {
     this.gameOn = false;
@@ -42,16 +40,28 @@ class Game {
   };
 
   addPotato = () => {
-    
-      
+    let newPotato = new Potato(this.humanClass.x + 40, this.humanClass.y - 5);
+    // newPotato.x = this.humanClass.x + 40
+    // newPotato.y = this.humanClass.y - 5
+    this.potatoReload.push(newPotato);
+  };
 
+  potatoChickenHit = () => {
+    this.potatoReload.forEach((eachPotato, indexPotato) => {
       
-      let newPotato = new Potato(this.humanClass.x + 40, this.humanClass.y - 5);
-      // newPotato.x = this.humanClass.x + 40
-      // newPotato.y = this.humanClass.y - 5
-      this.potatoReload.push(newPotato);
-    }
-  
+      this.chickenCage.forEach((eachChicken, indexChicken) => {
+        if (
+          eachChicken.x < eachPotato.x + eachPotato.w &&
+          eachChicken.x + eachChicken.w > eachPotato.x &&
+          eachChicken.y < eachPotato.y + eachPotato.h &&
+          eachChicken.h + eachChicken.y > eachPotato.y
+        ) {
+          this.potatoReload.splice(indexPotato, 1)
+          this.chickenCage.splice(indexChicken,1)
+        }
+      });
+    });
+  };
 
   addChicken = () => {
     if (this.frames % 180 === 0) {
@@ -153,6 +163,8 @@ class Game {
 
     this.rabbitHumanWound();
 
+    this.potatoChickenHit();
+
     //         Chicken addLoop
     this.addChicken();
     this.chickenCage.forEach((eachChicken) => {
@@ -165,36 +177,23 @@ class Game {
     this.chickenHumanWound();
 
     //                -- Potato Conditions & Loops --
-    
 
-    //if (this.noShoot === true){
-    //  this.potatoHumansHand();
-    //}
     this.potatoReload.forEach((eachPotato) => {
-      eachPotato.potatoDirection()
-    })
+      eachPotato.potatoDirection();
+    });
 
-    if (this.noShoot === false){
-          this.addPotato()
-          // this.potatoReload.forEach((eachPotato) => {
-          //   eachPotato.potatoDirection()
-          // })
-          this.noShoot = true
+    if (this.noShoot === false) {
+      this.addPotato();
+      this.noShoot = true;
     }
-
-    //this.chickenClass.movementChicken()
-    //this.rabbitClass.movementRabbit();
-    //this.rabbitClass.wallCollideRabbit();
-    //this.pigClass.movementPig();
 
     // * 3. Dibujado de los elementos
     this.drawFloor();
     this.humanClass.drawHuman();
     this.potatoReload.forEach((eachPotato) => {
-      eachPotato.drawPotato()
-    })
-    //this.pigClass.drawPig();
-    //this.rabbitClass.drawRabbit();
+      eachPotato.drawPotato();
+    });
+
     this.rabbitCage.forEach((eachRabbit) => {
       eachRabbit.drawRabbit();
     });
