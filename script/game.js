@@ -8,11 +8,7 @@ class Game {
     this.floor.src = "./images/floor.jpeg";
     // Objets
     this.humanClass = new Human();
-    //this.potatoClass = new Potato();
 
-    //this.pigClass = new Pig();
-    //this.chickenClass = new Chicken();
-    //this.rabbitClass = new Rabbit();
     // ArraysObjets
     this.chickenCage = [];
     this.pigCage = [];
@@ -23,32 +19,30 @@ class Game {
     this.frames = 0;
     this.gameOn = true;
     this.noShoot = true;
+
+    this.gameMusic = new Audio();
+    this.gameMusic.src =
+      "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3";
+    
   }
 
   // ! METHODS
-
-  //potatoHumansHand = () => {
-
-  //  this.potatoClass.x = this.humanClass.x + 40
-  //  this.potatoClass.y = this.humanClass.y - 5
-  //}
 
   gameOver = () => {
     this.gameOn = false;
     canvas.style.display = "none";
     gameOverScreen.style.display = "grid";
+    this.gameMusic.pause()
   };
 
   addPotato = () => {
     let newPotato = new Potato(this.humanClass.x + 40, this.humanClass.y - 5);
-    // newPotato.x = this.humanClass.x + 40
-    // newPotato.y = this.humanClass.y - 5
+
     this.potatoReload.push(newPotato);
   };
 
   potatoChickenHit = () => {
     this.potatoReload.forEach((eachPotato, indexPotato) => {
-      
       this.chickenCage.forEach((eachChicken, indexChicken) => {
         if (
           eachChicken.x < eachPotato.x + eachPotato.w &&
@@ -56,8 +50,8 @@ class Game {
           eachChicken.y < eachPotato.y + eachPotato.h &&
           eachChicken.h + eachChicken.y > eachPotato.y
         ) {
-          this.potatoReload.splice(indexPotato, 1)
-          this.chickenCage.splice(indexChicken, 1)
+          this.potatoReload.splice(indexPotato, 1);
+          this.chickenCage.splice(indexChicken, 1);
         }
       });
     });
@@ -65,7 +59,6 @@ class Game {
 
   potatoPigHit = () => {
     this.potatoReload.forEach((eachPotato, indexPotato) => {
-      
       this.pigCage.forEach((eachPig, indexPig) => {
         if (
           eachPig.x < eachPotato.x + eachPotato.w &&
@@ -73,8 +66,10 @@ class Game {
           eachPig.y < eachPotato.y + eachPotato.h &&
           eachPig.h + eachPig.y > eachPotato.y
         ) {
-          this.potatoReload.splice(indexPotato, 1)
-          this.pigCage.splice(indexPig, 1)
+          eachPig.y = eachPig.y - 50;
+          this.potatoReload.splice(indexPotato, 1);
+        } else if (eachPig.y < -30) {
+          this.pigCage.splice(indexPig, 1);
         }
       });
     });
@@ -82,7 +77,6 @@ class Game {
 
   potatoRabbitHit = () => {
     this.potatoReload.forEach((eachPotato, indexPotato) => {
-      
       this.rabbitCage.forEach((eachRabbit, indexRabbit) => {
         if (
           eachRabbit.x < eachPotato.x + eachPotato.w &&
@@ -90,13 +84,12 @@ class Game {
           eachRabbit.y < eachPotato.y + eachPotato.h &&
           eachRabbit.h + eachRabbit.y > eachPotato.y
         ) {
-          this.potatoReload.splice(indexPotato, 1)
-          this.rabbitCage.splice(indexRabbit, 1)
+          this.potatoReload.splice(indexPotato, 1);
+          this.rabbitCage.splice(indexRabbit, 1);
         }
       });
     });
   };
-
 
   addChicken = () => {
     if (this.frames % 180 === 0) {
@@ -180,6 +173,7 @@ class Game {
     ctx.clearRect(0, 0, canvas.Width, canvas.height);
 
     // * 2. Acciones y movimientos de los elementos
+
     //             Pig addLoop
     this.addPig();
     this.pigCage.forEach((eachPig) => {
@@ -199,8 +193,8 @@ class Game {
     this.rabbitHumanWound();
 
     this.potatoChickenHit();
-    this.potatoPigHit()
-    this.potatoRabbitHit()
+    this.potatoPigHit();
+    this.potatoRabbitHit();
 
     //         Chicken addLoop
     this.addChicken();

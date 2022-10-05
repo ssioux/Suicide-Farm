@@ -1,4 +1,3 @@
-
 // ! GLOBAL VARIABLES
 
 const canvas = document.querySelector("#my-canvas");
@@ -14,22 +13,22 @@ let gameClass;
 // ! STATE MANAGEMENT FUNCTIONS
 // startGame
 const startGame = () => {
- 
   startScreen.style.display = "none";
   canvas.style.display = "grid";
   gameClass = new Game();
   gameClass.gameLoop();
+  gameClass.gameMusic.play()
 };
 
 // reStartGame
 const reStartGame = () => {
-  
   gameOverScreen.style.display = "none";
   canvas.style.display = "grid";
   gameClass = new Game();
   gameClass.gameLoop();
-}
+  gameClass.gameMusic.play()
 
+};
 
 // ! ADD EVENT LISTENERS
 
@@ -37,14 +36,10 @@ startBtn.addEventListener("click", startGame);
 reStartBtn.addEventListener("click", reStartGame);
 
 window.addEventListener("keydown", (event) => {
-  if (event.code === "Space"){
-  
-    gameClass.noShoot = false
+  if (event.code === "Space") {
+    gameClass.noShoot = false;
   }
-})
-
-
-
+});
 
 window.addEventListener("keydown", (event) => {
   if (

@@ -8,7 +8,7 @@ class Potato {
         this.w = 30;
         this.h = 30;
         this.speed = 6;
-        this.yDirection = -4;
+        this.yDirection = -10;
       }
       // CLASS METHODS
     
