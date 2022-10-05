@@ -6,6 +6,7 @@ class Game {
     // Background
     this.floor = new Image();
     this.floor.src = "./images/floor.jpeg";
+
     // Objets
     this.humanClass = new Human();
 
@@ -19,27 +20,23 @@ class Game {
     this.frames = 0;
     this.gameOn = true;
     this.noShoot = true;
+    
 
+    // Audio
     this.gameMusic = new Audio();
     this.gameMusic.src =
       "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3";
-    
   }
 
   // ! METHODS
 
-  gameOver = () => {
-    this.gameOn = false;
-    canvas.style.display = "none";
-    gameOverScreen.style.display = "grid";
-    this.gameMusic.pause()
-  };
+  //                * HIT
 
-  addPotato = () => {
-    let newPotato = new Potato(this.humanClass.x + 40, this.humanClass.y - 5);
+  cambioImagenHit = () => {
+    
+    this.chickenCage.splice(indexChicken, 1);
 
-    this.potatoReload.push(newPotato);
-  };
+  }
 
   potatoChickenHit = () => {
     this.potatoReload.forEach((eachPotato, indexPotato) => {
@@ -50,8 +47,19 @@ class Game {
           eachChicken.y < eachPotato.y + eachPotato.h &&
           eachChicken.h + eachChicken.y > eachPotato.y
         ) {
+          //let rChickenX =
+          //let rChickenY =
+          //let ChickenHit = new
+          //let newImgChicken = new Chicken(rChickenX, rChickenY, )
+          
           this.potatoReload.splice(indexPotato, 1);
-          this.chickenCage.splice(indexChicken, 1);
+         // this.chickenCage[indexChicken].img.src = "./images/chicken2.png"
+          //setTimeout(this.cambioImagenHit(), 1000)
+          this.chickenCage[indexChicken].img.src = "./images/chicken2.png"
+         
+            this.chickenCage.splice(indexChicken, 1);
+          
+          //this.chickenCage.splice(indexChicken, 1);
         }
       });
     });
@@ -91,6 +99,14 @@ class Game {
     });
   };
 
+  //                * ADD
+
+  addPotato = () => {
+    let newPotato = new Potato(this.humanClass.x + 40, this.humanClass.y - 5);
+
+    this.potatoReload.push(newPotato);
+  };
+
   addChicken = () => {
     if (this.frames % 180 === 0) {
       let rChickenX = Math.floor(Math.random() * 100);
@@ -120,6 +136,8 @@ class Game {
       this.pigCage.push(newPig);
     }
   };
+
+  //                * WOUND
 
   chickenHumanWound = () => {
     this.chickenCage.forEach((eachChicken) => {
@@ -166,9 +184,17 @@ class Game {
     ctx.drawImage(this.floor, 0, 0, canvas.width, canvas.height);
   };
 
+  //                * GAME
+  gameOver = () => {
+    this.gameOn = false;
+    canvas.style.display = "none";
+    gameOverScreen.style.display = "grid";
+    this.gameMusic.pause();
+  };
+
   gameLoop = () => {
     this.frames = this.frames + 1;
-
+    
     // * 1. Limpiar canvas
     ctx.clearRect(0, 0, canvas.Width, canvas.height);
 

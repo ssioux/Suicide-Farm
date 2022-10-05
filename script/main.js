@@ -23,7 +23,7 @@ const startGame = () => {
 // reStartGame
 const reStartGame = () => {
   gameOverScreen.style.display = "none";
-  canvas.style.display = "grid";
+  canvas.style.display = "block";
   gameClass = new Game();
   gameClass.gameLoop();
   gameClass.gameMusic.play()
