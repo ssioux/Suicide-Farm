@@ -20,7 +20,6 @@ class Game {
     this.frames = 0;
     this.gameOn = true;
     this.noShoot = true;
-    
 
     // Audio
     this.gameMusic = new Audio();
@@ -33,10 +32,8 @@ class Game {
   //                * HIT
 
   cambioImagenHit = () => {
-    
     this.chickenCage.splice(indexChicken, 1);
-
-  }
+  };
 
   potatoChickenHit = () => {
     this.potatoReload.forEach((eachPotato, indexPotato) => {
@@ -47,19 +44,18 @@ class Game {
           eachChicken.y < eachPotato.y + eachPotato.h &&
           eachChicken.h + eachChicken.y > eachPotato.y
         ) {
-          //let rChickenX =
-          //let rChickenY =
-          //let ChickenHit = new
-          //let newImgChicken = new Chicken(rChickenX, rChickenY, )
           
+
           this.potatoReload.splice(indexPotato, 1);
-         // this.chickenCage[indexChicken].img.src = "./images/chicken2.png"
-          //setTimeout(this.cambioImagenHit(), 1000)
-          this.chickenCage[indexChicken].img.src = "./images/chicken2.png"
-         
-            this.chickenCage.splice(indexChicken, 1);
+          this.chickenCage[indexChicken].img.src = "./images/chicken2.png";
+          this.chickenCage[indexChicken].xDirection = 0
+          this.chickenCage[indexChicken].yDirection = 0
+       
+          setTimeout(() => this.chickenCage.splice(indexChicken, 1), 1000);
+
           
-          //this.chickenCage.splice(indexChicken, 1);
+
+          
         }
       });
     });
@@ -108,8 +104,8 @@ class Game {
   };
 
   addChicken = () => {
-    if (this.frames % 180 === 0) {
-      let rChickenX = Math.floor(Math.random() * 100);
+    if (this.frames % 120 === 0) {
+      let rChickenX = Math.floor(Math.random() * 200);
       let rChickenY = Math.floor(Math.random() * 100);
 
       let newChicken = new Chicken(rChickenX, rChickenY);
@@ -194,7 +190,7 @@ class Game {
 
   gameLoop = () => {
     this.frames = this.frames + 1;
-    
+
     // * 1. Limpiar canvas
     ctx.clearRect(0, 0, canvas.Width, canvas.height);
 

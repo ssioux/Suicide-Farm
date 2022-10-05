@@ -17,7 +17,7 @@ const startGame = () => {
   canvas.style.display = "grid";
   gameClass = new Game();
   gameClass.gameLoop();
-  gameClass.gameMusic.play()
+  gameClass.gameMusic.play();
 };
 
 // reStartGame
@@ -26,8 +26,7 @@ const reStartGame = () => {
   canvas.style.display = "block";
   gameClass = new Game();
   gameClass.gameLoop();
-  gameClass.gameMusic.play()
-
+  gameClass.gameMusic.play();
 };
 
 // ! ADD EVENT LISTENERS

@@ -1,26 +1,30 @@
 body {
   min-height: 100vh;
   max-width: 1000px;
-
+  display: grid;
+  grid-template-columns: 37% 50% 20%S;
+  grid-template-rows: 11% 60% 15%;
   margin: 0;
   background-color: burlywood;
-
-  background-size: cover;
+  background-position: static;
+  background-size: 1500px;
   background-repeat: no-repeat;
   background-image: url("./images/body-bg.jpg");
+  gap: 20px;
 }
 
 .main {
-  margin-left: 300px;
-  display: grid;
-  grid-template-columns: 37% 50% 20%;
-  grid-template-rows: 11% 60% 15%;
+  
+  margin-left: px;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  
   min-height: 100vh;
   justify-content: center;
 
   /* align-content: center; */
 
-  gap: 20px;
+  
 }
 
 #startmenu-screen {
@@ -50,8 +54,10 @@ body {
   height: 700px;
 }
 
-.start-btn,
-#restart-btn {
+.start-btn {
+
+  width: 200px;
+  height: 50px;
   background-color: rgb(66, 62, 62);
   color: white;
   font-size: 30px;
@@ -61,9 +67,28 @@ body {
   font-style: italic;
   border-radius: 10px;
   border-style: ridge;
-  padding: 10px;
-  margin: 30px 30px 0px 50px;
-  bottom: 100px;
+  margin: 30px 30px 0px 100px;
+
+
+}
+
+
+
+
+#restart-btn {
+  width: 200px;
+  height: 50px;
+  background-color: rgb(66, 62, 62);
+  color: white;
+  font-size: 30px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+  border-radius: 10px;
+  border-style: ridge;
+  margin: 30px 30px 0px 200px;
+  
 }
 
 #my-canvas,
