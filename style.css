@@ -25,6 +25,19 @@ body {
   border-width: 3px;
   border-style: double;
   border-radius: 40px ;
+  margin-left: 40px;
+}
+
+
+.left-section1 {
+ color: white;
+ font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+ padding: 30px;
+ 
+}
+
+.left-section2 {
+  margin-left: 20px;
 }
 
 .main {
@@ -42,8 +55,10 @@ body {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
   margin-top: 50px;
-  margin-left: 130px;
+  margin-left: 85px;
 }
+
+.section1
 
 #my-canvas {
   display: none;
