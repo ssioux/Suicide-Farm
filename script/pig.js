@@ -3,7 +3,7 @@
 class Pig {
   constructor() {
     this.img = new Image();
-    this.img.src = "./images/evilpig.png";
+    this.img.src = "./images/pig.png";
     this.x = 370;
     this.y = 20;
     this.w = 100;
