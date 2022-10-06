@@ -45,19 +45,18 @@ class Game {
           eachChicken.y < eachPotato.y + eachPotato.h &&
           eachChicken.h + eachChicken.y > eachPotato.y
         ) {
-          // eachChicken.hasImpacted = true
+          
+          this.potatoReload.splice(indexPotato, 1); 
 
-          this.potatoReload.splice(indexPotato, 1);
-          if (eachChicken.hasImpacted === false){
+          if (eachChicken.hadImpacted === false){            
           this.chickenCage[indexChicken].img.src = "./images/chicken2.png";
           this.chickenCage[indexChicken].xDirection = 0;
           this.chickenCage[indexChicken].yDirection = 0;
-          
           let removeChicken = setTimeout(() => {
             this.chickenCage.splice(indexChicken, 1)
             this.score = this.score + 10
           }, 500);
-          eachChicken.hasImpacted = true
+          eachChicken.hadImpacted = true
           }
         
         } 
@@ -77,7 +76,7 @@ class Game {
           eachPig.y = eachPig.y - 70;
           this.potatoReload.splice(indexPotato, 1);
           
-        } else if (eachPig.y < 0) {
+        } else if (eachPig.y < 0 && eachPig.hadImpacted === false) {
           
           this.pigCage[indexPig].img.src = "./images/pig2.png";
           this.pigCage[indexPig].xDirection = 0;
@@ -89,10 +88,7 @@ class Game {
             this.score = this.score + 50
           }, 500);
 
-          // if(removePig === true){
-          //   this.score = this.score + 50
-          //   console.log(this.score)
-          // }
+          eachPig.hadImpacted = true
 
         }
       });
@@ -109,20 +105,25 @@ class Game {
           eachRabbit.h + eachRabbit.y > eachPotato.y
         ) {
           this.potatoReload.splice(indexPotato, 1);
+          if (eachRabbit.hadImpacted === false){
+          
           this.rabbitCage[indexRabbit].img.src = "./images/rabbit2.png";
           this.rabbitCage[indexRabbit].xDirection = 0;
           this.rabbitCage[indexRabbit].yDirection = 0;
           
           
-          let removeRabbit = setTimeout(() => this.rabbitCage.splice(indexRabbit, 1), 500);
-          if (removeRabbit === true) {
+          let removeRabbit = setTimeout(() => {
+            this.rabbitCage.splice(indexRabbit, 1)
             this.score = this.score + 30
-          }
+          }, 500);
           
+          eachRabbit.hadImpacted = true
+          }
         }
+        })
       });
-    });
-  };
+    };
+  
 
   //   ************** ADD
 

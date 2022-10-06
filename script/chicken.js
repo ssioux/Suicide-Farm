@@ -8,7 +8,7 @@ class Chicken {
     this.y = yParam;
     this.w = 60;
     this.h = 60;
-    this.hasImpacted = false
+    this.hadImpacted = false
     
 
     this.xDirection = 1

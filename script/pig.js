@@ -8,7 +8,7 @@ class Pig {
     this.y = 0;
     this.w = 100;
     this.h = 100;
-    this.hasImpacted = false
+    this.hadImpacted = false
     this.yDirection = 1;
   }
   // CLASS METHODS
