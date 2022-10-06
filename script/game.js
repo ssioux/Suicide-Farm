@@ -32,9 +32,7 @@ class Game {
 
   //   ************** HIT
 
-  cambioImagenHit = () => {
-    this.chickenCage.splice(indexChicken, 1);
-  };
+
 
   potatoChickenHit = () => {
     this.potatoReload.forEach((eachPotato, indexPotato) => {
@@ -49,9 +47,11 @@ class Game {
           this.chickenCage[indexChicken].img.src = "./images/chicken2.png";
           this.chickenCage[indexChicken].xDirection = 0;
           this.chickenCage[indexChicken].yDirection = 0;
-          setTimeout(() => this.chickenCage.splice(indexChicken, 1), 500);
-          setTimeout(() => this.score += 10, 500);
+          let removeChicken = setTimeout(() => this.chickenCage.splice(indexChicken, 1), 500);
+          if(removeChicken === true) {
+            this.score += 10
         }
+      }
       });
     });
   };
@@ -71,9 +71,10 @@ class Game {
           this.pigCage[indexPig].img.src = "./images/pig2.png";
           this.pigCage[indexPig].xDirection = 0;
           this.pigCage[indexPig].yDirection = 0;
-
-          setTimeout(() => this.pigCage.splice(indexPig, 1), 500);
-          setTimeout(() => this.score += 50, 500);
+          let removePig = setTimeout(() => this.pigCage.splice(indexPig, 1), 500);
+          if(removePig === true){
+            this.score += 50
+          }
 
         }
       });
@@ -95,8 +96,10 @@ class Game {
           this.rabbitCage[indexRabbit].yDirection = 0;
           
           
-          setTimeout(() => this.rabbitCage.splice(indexRabbit, 1), 500);
-          setTimeout(() => this.score += 30, 500);
+          let removeRabbit = setTimeout(() => this.rabbitCage.splice(indexRabbit, 1), 500);
+          if (removeRabbit === true) {
+            this.score += 30
+          }
         }
       });
     });
@@ -186,9 +189,11 @@ class Game {
   //   ************** DRAWS
   drawScore = () => {
     ctx.font = "30px Verdana";
-    let scoreInGame = `Score: ${this.score}`;
-    ctx.strokeText(scoreInGame, canvas.width * 0.4, 50);
+    
     ctx.fillStyle = "orange";
+    ctx.strokeText(`Score: `, canvas.width * 0.4, 50);
+    ctx.fillText(`${this.score}`, canvas.width * 0.55, 50)
+    
   };
 
   drawFloor = () => {
