@@ -42,18 +42,18 @@ window.addEventListener("keydown", (event) => {
 
 window.addEventListener("keydown", (event) => {
   if (
-    event.code === "ArrowRight" &&
+    event.code === "KeyD" &&
     gameClass.humanClass.x < canvas.width - gameClass.humanClass.w
   ) {
-    gameClass.humanClass.x = gameClass.humanClass.x + 30;
-  } else if (event.code === "ArrowLeft" && gameClass.humanClass.x > 0) {
-    gameClass.humanClass.x = gameClass.humanClass.x - 30;
-  } else if (event.code === "ArrowUp" && gameClass.humanClass.y > 0) {
-    gameClass.humanClass.y = gameClass.humanClass.y - 30;
+    gameClass.humanClass.x = gameClass.humanClass.x + 60;
+  } else if (event.code === "KeyA" && gameClass.humanClass.x > 0) {
+    gameClass.humanClass.x = gameClass.humanClass.x - 60;
+  } else if (event.code === "KeyW" && gameClass.humanClass.y > 0) {
+    gameClass.humanClass.y = gameClass.humanClass.y - 60;
   } else if (
-    event.code === "ArrowDown" &&
+    event.code === "KeyS" &&
     gameClass.humanClass.y < canvas.height - gameClass.humanClass.h
   ) {
-    gameClass.humanClass.y = gameClass.humanClass.y + 30;
+    gameClass.humanClass.y = gameClass.humanClass.y + 60;
   }
 });

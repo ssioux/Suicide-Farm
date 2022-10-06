@@ -20,6 +20,7 @@ class Game {
     this.frames = 0;
     this.gameOn = true;
     this.noShoot = true;
+    this.score = 0;
 
     // Audio
     this.gameMusic = new Audio();
@@ -44,18 +45,12 @@ class Game {
           eachChicken.y < eachPotato.y + eachPotato.h &&
           eachChicken.h + eachChicken.y > eachPotato.y
         ) {
-          
-
           this.potatoReload.splice(indexPotato, 1);
           this.chickenCage[indexChicken].img.src = "./images/chicken2.png";
-          this.chickenCage[indexChicken].xDirection = 0
-          this.chickenCage[indexChicken].yDirection = 0
-       
-          setTimeout(() => this.chickenCage.splice(indexChicken, 1), 1000);
-
-          
-
-          
+          this.chickenCage[indexChicken].xDirection = 0;
+          this.chickenCage[indexChicken].yDirection = 0;
+          this.score += 10;
+          setTimeout(() => this.chickenCage.splice(indexChicken, 1), 500);
         }
       });
     });
@@ -70,10 +65,15 @@ class Game {
           eachPig.y < eachPotato.y + eachPotato.h &&
           eachPig.h + eachPig.y > eachPotato.y
         ) {
-          eachPig.y = eachPig.y - 50;
+          eachPig.y = eachPig.y - 70;
           this.potatoReload.splice(indexPotato, 1);
         } else if (eachPig.y < -30) {
-          this.pigCage.splice(indexPig, 1);
+          this.pigCage[indexPig].img.src = "./images/pig2.png";
+          this.pigCage[indexPig].xDirection = 0;
+          this.pigCage[indexPig].yDirection = 0;
+          this.score += 50;
+
+          setTimeout(() => this.pigCage.splice(indexPig, 1), 500);
         }
       });
     });
@@ -89,7 +89,11 @@ class Game {
           eachRabbit.h + eachRabbit.y > eachPotato.y
         ) {
           this.potatoReload.splice(indexPotato, 1);
-          this.rabbitCage.splice(indexRabbit, 1);
+          this.rabbitCage[indexRabbit].img.src = "./images/rabbit2.png";
+          this.rabbitCage[indexRabbit].xDirection = 0;
+          this.rabbitCage[indexRabbit].yDirection = 0;
+          this.score += 30;
+          setTimeout(() => this.rabbitCage.splice(indexRabbit, 1), 500);
         }
       });
     });

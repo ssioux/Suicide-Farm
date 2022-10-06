@@ -6,7 +6,7 @@ body {
   grid-template-rows: 11% 60% 15%;
   margin: 0;
   background-color: burlywood;
-  background-position: static;
+  /*-position: static;*/
   background-size: 1500px;
   background-repeat: no-repeat;
   background-image: url("./images/body-bg.jpg");
