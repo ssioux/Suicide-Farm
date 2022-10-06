@@ -121,8 +121,8 @@ class Game {
     if (this.frames % 360 === 0) {
       // 6 secs
 
-      let rRabbitX = Math.floor(Math.random() * (canvas.width - 550) + 550);
-      let rRabbitY = Math.floor(Math.random() * (canvas.height - 200) + 200);
+      let rRabbitX = Math.floor(Math.random() * canvas.width);
+      let rRabbitY = Math.floor(Math.random() * (canvas.height - 300));
 
       let newRabbit = new Rabbit(rRabbitX, rRabbitY);
       this.rabbitCage.push(newRabbit);

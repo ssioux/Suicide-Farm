@@ -4,8 +4,8 @@ class Human {
   constructor() {
     this.img = new Image();
     this.img.src = "./images/human.png";
-    this.x = 270;
-    this.y = 620;
+    this.x = 300;
+    this.y = 590;
     this.w = 60;
     this.h = 50;
     this.speed = 30;

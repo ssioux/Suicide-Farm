@@ -35,7 +35,7 @@ startBtn.addEventListener("click", startGame);
 reStartBtn.addEventListener("click", reStartGame);
 
 window.addEventListener("keydown", (event) => {
-  if (event.code === "Space") {
+  if (event.code === "Enter") {
     gameClass.noShoot = false;
   }
 });
@@ -46,7 +46,7 @@ window.addEventListener("keydown", (event) => {
     gameClass.humanClass.x < canvas.width - gameClass.humanClass.w
   ) {
     gameClass.humanClass.x = gameClass.humanClass.x + 60;
-  } else if (event.code === "KeyA" && gameClass.humanClass.x > 0) {
+  } else if (event.code === "KeyA" && gameClass.humanClass.x >  0) {
     gameClass.humanClass.x = gameClass.humanClass.x - 60;
   } else if (event.code === "KeyW" && gameClass.humanClass.y > 0) {
     gameClass.humanClass.y = gameClass.humanClass.y - 60;
