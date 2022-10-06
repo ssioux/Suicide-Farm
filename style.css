@@ -24,16 +24,14 @@ body {
   border: 1px solid darkred;
   border-width: 3px;
   border-style: double;
-  border-radius: 40px ;
+  border-radius: 40px;
   margin-left: 40px;
 }
 
-
 .left-section1 {
- color: white;
- font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
- padding: 30px;
- 
+  color: white;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  padding: 30px;
 }
 
 .left-section2 {
@@ -41,6 +39,7 @@ body {
 }
 
 .main {
+  
   grid-column: 2 / 3;
   grid-row: 2 / 3;
 
@@ -51,17 +50,15 @@ body {
 }
 
 #startmenu-screen {
-  display: grid;
+ 
   grid-column: 2 / 3;
   grid-row: 2 / 3;
   margin-top: 50px;
   margin-left: 85px;
 }
 
-.section1
-
 #my-canvas {
-  display: none;
+  
   border: 7px solid darkred;
   border-style: ridge;
   margin: 0px;
@@ -71,7 +68,7 @@ body {
 }
 
 #gameover-screen {
-  display: grid;
+  
   grid-column: 2 / 3;
   grid-row: 2 / 3;
 

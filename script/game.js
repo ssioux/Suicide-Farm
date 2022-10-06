@@ -47,11 +47,12 @@ class Game {
           this.chickenCage[indexChicken].img.src = "./images/chicken2.png";
           this.chickenCage[indexChicken].xDirection = 0;
           this.chickenCage[indexChicken].yDirection = 0;
+          
           let removeChicken = setTimeout(() => this.chickenCage.splice(indexChicken, 1), 500);
-          if(removeChicken === true) {
-            this.score += 10
+          if (removeChicken === true) {
+          this.score = this.score + 10
+          }
         }
-      }
       });
     });
   };
@@ -67,13 +68,15 @@ class Game {
         ) {
           eachPig.y = eachPig.y - 70;
           this.potatoReload.splice(indexPotato, 1);
-        } else if (eachPig.y < -30) {
+        } else if (eachPig.y < 0) {
           this.pigCage[indexPig].img.src = "./images/pig2.png";
           this.pigCage[indexPig].xDirection = 0;
           this.pigCage[indexPig].yDirection = 0;
+          eachPig.y = 0
           let removePig = setTimeout(() => this.pigCage.splice(indexPig, 1), 500);
           if(removePig === true){
-            this.score += 50
+            this.score = this.score + 50
+            console.log(this.score)
           }
 
         }
@@ -98,8 +101,9 @@ class Game {
           
           let removeRabbit = setTimeout(() => this.rabbitCage.splice(indexRabbit, 1), 500);
           if (removeRabbit === true) {
-            this.score += 30
+            this.score = this.score + 30
           }
+          
         }
       });
     });
