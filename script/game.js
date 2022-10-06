@@ -30,7 +30,7 @@ class Game {
 
   // ! METHODS
 
-  //                * HIT
+  //   ************** HIT
 
   cambioImagenHit = () => {
     this.chickenCage.splice(indexChicken, 1);
@@ -93,13 +93,14 @@ class Game {
           this.rabbitCage[indexRabbit].xDirection = 0;
           this.rabbitCage[indexRabbit].yDirection = 0;
           this.score += 30;
-          setTimeout(() => this.rabbitCage.splice(indexRabbit, 1), 500);
+          setTimeout(() => this.rabbitCage.splice(indexRabbit, 1)
+          this.score += 30, 500);
         }
       });
     });
   };
 
-  //                * ADD
+  //   ************** ADD
 
   addPotato = () => {
     let newPotato = new Potato(this.humanClass.x + 40, this.humanClass.y - 5);
@@ -109,7 +110,7 @@ class Game {
 
   addChicken = () => {
     if (this.frames % 120 === 0) {
-      let rChickenX = Math.floor(Math.random() * (-200));
+      let rChickenX = Math.floor(Math.random() * -200);
       let rChickenY = Math.floor(Math.random() * 300);
 
       let newChicken = new Chicken(rChickenX, rChickenY);
@@ -137,7 +138,7 @@ class Game {
     }
   };
 
-  //                * WOUND
+  //   ************** WOUND
 
   chickenHumanWound = () => {
     this.chickenCage.forEach((eachChicken) => {
@@ -180,11 +181,19 @@ class Game {
     });
   };
 
+  //   ************** DRAWS
+  drawScore = () => {
+    ctx.font = "30px Verdana";
+    let scoreInGame = `Score: ${this.score}`;
+    ctx.strokeText(scoreInGame, canvas.width / 2, 50);
+    ctx.fillStyle = "orange";
+  };
+
   drawFloor = () => {
     ctx.drawImage(this.floor, 0, 0, canvas.width, canvas.height);
   };
 
-  //                * GAME
+  //   ************** GAME
   gameOver = () => {
     this.gameOn = false;
     canvas.style.display = "none";
@@ -246,6 +255,7 @@ class Game {
 
     // * 3. Dibujado de los elementos
     this.drawFloor();
+    this.drawScore();
     this.humanClass.drawHuman();
     this.potatoReload.forEach((eachPotato) => {
       eachPotato.drawPotato();
