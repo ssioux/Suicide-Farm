@@ -5,7 +5,7 @@ class Game {
     //! Properties
     // Background
     this.floor = new Image();
-    this.floor.src = "./images/floor.jpeg";
+    this.floor.src = "./images/floor1.jpeg";
 
     // Objets
     this.humanClass = new Human();
@@ -32,9 +32,15 @@ class Game {
 
   // ! METHODS
 
+  scoreGameOverScreen = () => {
+
+  scoreNumber.innerText = gameClass.score
+  console.log(scoreNumber.innerText)
+
+
+  }
+
   //   ************** HIT
-
-
 
   potatoChickenHit = () => {
     this.potatoReload.forEach((eachPotato, indexPotato) => {
@@ -45,21 +51,19 @@ class Game {
           eachChicken.y < eachPotato.y + eachPotato.h &&
           eachChicken.h + eachChicken.y > eachPotato.y
         ) {
-          
-          this.potatoReload.splice(indexPotato, 1); 
+          this.potatoReload.splice(indexPotato, 1);
 
-          if (eachChicken.hadImpacted === false){            
-          this.chickenCage[indexChicken].img.src = "./images/chicken2.png";
-          this.chickenCage[indexChicken].xDirection = 0;
-          this.chickenCage[indexChicken].yDirection = 0;
-          let removeChicken = setTimeout(() => {
-            this.chickenCage.splice(indexChicken, 1)
-            this.score = this.score + 10
-          }, 500);
-          eachChicken.hadImpacted = true
+          if (eachChicken.hadImpacted === false) {
+            this.chickenCage[indexChicken].img.src = "./images/chicken2.png";
+            this.chickenCage[indexChicken].xDirection = 0;
+            this.chickenCage[indexChicken].yDirection = 0;
+            setTimeout(() => {
+              this.chickenCage.splice(indexChicken, 1);
+              this.score = this.score + 10;
+            }, 500);
+            eachChicken.hadImpacted = true;
           }
-        
-        } 
+        }
       });
     });
   };
@@ -75,21 +79,17 @@ class Game {
         ) {
           eachPig.y = eachPig.y - 70;
           this.potatoReload.splice(indexPotato, 1);
-          
         } else if (eachPig.y < 0 && eachPig.hadImpacted === false) {
-          
           this.pigCage[indexPig].img.src = "./images/pig2.png";
           this.pigCage[indexPig].xDirection = 0;
           this.pigCage[indexPig].yDirection = 0;
-          eachPig.y = 0
-          let removePig = setTimeout(() => {
-            
-            this.pigCage.splice(indexPig, 1)
-            this.score = this.score + 50
+          eachPig.y = 0;
+          setTimeout(() => {
+            this.pigCage.splice(indexPig, 1);
+            this.score = this.score + 50;
           }, 500);
 
-          eachPig.hadImpacted = true
-
+          eachPig.hadImpacted = true;
         }
       });
     });
@@ -105,25 +105,22 @@ class Game {
           eachRabbit.h + eachRabbit.y > eachPotato.y
         ) {
           this.potatoReload.splice(indexPotato, 1);
-          if (eachRabbit.hadImpacted === false){
-          
-          this.rabbitCage[indexRabbit].img.src = "./images/rabbit2.png";
-          this.rabbitCage[indexRabbit].xDirection = 0;
-          this.rabbitCage[indexRabbit].yDirection = 0;
-          
-          
-          let removeRabbit = setTimeout(() => {
-            this.rabbitCage.splice(indexRabbit, 1)
-            this.score = this.score + 30
-          }, 500);
-          
-          eachRabbit.hadImpacted = true
+          if (eachRabbit.hadImpacted === false) {
+            this.rabbitCage[indexRabbit].img.src = "./images/rabbit2.png";
+            this.rabbitCage[indexRabbit].xDirection = 0;
+            this.rabbitCage[indexRabbit].yDirection = 0;
+
+            setTimeout(() => {
+              this.rabbitCage.splice(indexRabbit, 1);
+              this.score = this.score + 30;
+            }, 500);
+
+            eachRabbit.hadImpacted = true;
           }
         }
-        })
       });
-    };
-  
+    });
+  };
 
   //   ************** ADD
 
@@ -207,13 +204,13 @@ class Game {
   };
 
   //   ************** DRAWS
+
   drawScore = () => {
     ctx.font = "30px Verdana";
-    
+
     ctx.fillStyle = "orange";
     ctx.strokeText(`Score: `, canvas.width * 0.4, 50);
-    ctx.fillText(`${this.score}`, canvas.width * 0.55, 50)
-    
+    ctx.fillText(`${this.score}`, canvas.width * 0.55, 50);
   };
 
   drawFloor = () => {
@@ -221,11 +218,13 @@ class Game {
   };
 
   //   ************** GAME
+
   gameOver = () => {
     this.gameOn = false;
     canvas.style.display = "none";
     gameOverScreen.style.display = "grid";
     this.gameMusic.pause();
+    this.scoreGameOverScreen()
   };
 
   gameLoop = () => {

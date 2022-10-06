@@ -8,9 +8,9 @@ const startBtn = document.querySelector(".start-btn");
 const gameOverScreen = document.querySelector("#gameover-screen");
 const reStartBtn = document.querySelector("#restart-btn");
 
-//const scoreNumber = document.querySelector("#gameover-screen p span")
-//scoreNumber.innerText =
-//console.log(scoreNumber.innerText)
+const scoreNumber = document.querySelector("#gameover-screen p span")
+
+
 
 let gameClass;
 
