@@ -109,8 +109,8 @@ class Game {
 
   addChicken = () => {
     if (this.frames % 120 === 0) {
-      let rChickenX = Math.floor(Math.random() * 200);
-      let rChickenY = Math.floor(Math.random() * 100);
+      let rChickenX = Math.floor(Math.random() * (-200));
+      let rChickenY = Math.floor(Math.random() * 300);
 
       let newChicken = new Chicken(rChickenX, rChickenY);
       this.chickenCage.push(newChicken);
@@ -121,7 +121,7 @@ class Game {
     if (this.frames % 360 === 0) {
       // 6 secs
 
-      let rRabbitX = Math.floor(Math.random() * canvas.width);
+      let rRabbitX = Math.floor(Math.random() * (canvas.width - 550) + 600);
       let rRabbitY = Math.floor(Math.random() * (canvas.height - 300));
 
       let newRabbit = new Rabbit(rRabbitX, rRabbitY);
