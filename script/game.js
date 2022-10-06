@@ -89,7 +89,7 @@ class Game {
           eachPig.y < eachPotato.y + eachPotato.h &&
           eachPig.h + eachPig.y > eachPotato.y
         ) {
-          eachPig.y = eachPig.y - 70;
+          eachPig.y = eachPig.y - 90;
           this.potatoReload.splice(indexPotato, 1);
         } else if (eachPig.y < 0 && eachPig.hadImpacted === false) {
           this.pigCage[indexPig].img.src = "./images/pig2.png";
@@ -134,7 +134,44 @@ class Game {
     });
   };
 
+  potatoStrongPigHit = () => {
+    this.potatoReload.forEach((eachPotato, indexPotato) => {
+      this.strongPigCage.forEach((eachStrongPig, indexStrongPig) => {
+        if (
+          eachStrongPig.x < eachPotato.x + eachPotato.w &&
+          eachStrongPig.x + eachStrongPig.w > eachPotato.x &&
+          eachStrongPig.y < eachPotato.y + eachPotato.h &&
+          eachStrongPig.h + eachStrongPig.y > eachPotato.y
+        ) {
+          this.potatoReload.splice(indexPotato, 1);
+          this.strongPigCage[indexStrongPig].img.src = "./images/pig.png";
+          eachStrongPig.yDirection = 1;
+          eachStrongPig.y = eachStrongPig.y - 90;
+        } else if (eachStrongPig.y < 0 && eachStrongPig.hadImpacted === false) {
+          
+          this.strongPigCage[indexStrongPig].img.src = "./images/pig2.png";
+          this.strongPigCage[indexStrongPig].yDirection = 0;
+          eachStrongPig.y = 0;
+          setTimeout(() => {
+            this.strongPigCage.splice(indexStrongPig, 1);
+            this.score = this.score + 100;
+          }, 500);
+
+          eachStrongPig.hadImpacted = true;
+        }
+      });
+    });
+  };
+
   //   ************** ADD
+
+  addStrongPig = () => {
+    if (this.frames % 360 === 0) {
+      // 5 secs
+      let newStrongPig = new StrongPig();
+      this.strongPigCage.push(newStrongPig);
+    }
+  }
 
   addPotato = () => {
     let newPotato = new Potato(this.humanClass.x + 40, this.humanClass.y - 5);
@@ -215,6 +252,21 @@ class Game {
     });
   };
 
+  strongPigHumanWound = () => {
+    this.strongPigCage.forEach((eachstrongPig) => {
+      if (
+        this.humanClass.x < eachstrongPig.x + eachstrongPig.w &&
+        this.humanClass.x + this.humanClass.w > eachstrongPig.x &&
+        this.humanClass.y < eachstrongPig.y + eachstrongPig.h &&
+        this.humanClass.h + this.humanClass.y > eachstrongPig.y
+      ) {
+        this.gameOver();
+      } else if (eachstrongPig.y > canvas.height) {
+        this.gameOver();
+      }
+    });
+  };
+
   //   ************** DRAWS
 
   drawScore = () => {
@@ -247,7 +299,13 @@ class Game {
 
     // * 2. Acciones y movimientos de los elementos
 
-    //             Pig addLoop
+    //             StrongPig addLoop
+    this.addStrongPig()
+    this.strongPigCage.forEach((eachStrongPig) => {
+      eachStrongPig.movementStrongPig()
+    })
+    this.strongPigHumanWound()
+
     this.addPig();
     this.pigCage.forEach((eachPig) => {
       eachPig.movementPig();
@@ -264,10 +322,11 @@ class Game {
     });
 
     this.rabbitHumanWound();
-
+    //              hit
     this.potatoChickenHit();
     this.potatoPigHit();
     this.potatoRabbitHit();
+    this.potatoStrongPigHit()
 
     //         Chicken addLoop
     this.addChicken();
@@ -302,6 +361,11 @@ class Game {
 
     this.rabbitCage.forEach((eachRabbit) => {
       eachRabbit.drawRabbit();
+    });
+    
+
+    this.strongPigCage.forEach((eachStrongPig) => {
+      eachStrongPig.drawStrongPig();
     });
 
     this.pigCage.forEach((eachPig) => {
