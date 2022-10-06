@@ -40,6 +40,18 @@ class Game {
 
   }
 
+  removingPotatoes = () => {
+
+    this.potatoReload.forEach((eachPotato) => {
+      if (eachPotato.y < 0) {
+        console.log("saliendo")
+
+        this.potatoReload.splice(eachPotato, 1)
+      
+      }
+    })
+  }
+
   //   ************** HIT
 
   potatoChickenHit = () => {
@@ -269,6 +281,7 @@ class Game {
     this.chickenHumanWound();
 
     //                -- Potato Conditions & Loops --
+    this.removingPotatoes()
 
     this.potatoReload.forEach((eachPotato) => {
       eachPotato.potatoDirection();
