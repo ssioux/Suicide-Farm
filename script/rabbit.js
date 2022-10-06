@@ -12,6 +12,7 @@ class Rabbit {
       this.h = 40;
       this.xDirection = -1
       this.yDirection = -1
+      this.hadImpacted = false
       
     }
     // CLASS METHODS

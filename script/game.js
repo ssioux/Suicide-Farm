@@ -13,7 +13,9 @@ class Game {
     // ArraysObjets
     this.chickenCage = [];
     this.pigCage = [];
+    this.strongPigCage = [];
     this.rabbitCage = [];
+    this.fastRabbitCage = [];
     this.potatoReload = [];
 
     // Others
@@ -43,16 +45,22 @@ class Game {
           eachChicken.y < eachPotato.y + eachPotato.h &&
           eachChicken.h + eachChicken.y > eachPotato.y
         ) {
+          // eachChicken.hasImpacted = true
+
           this.potatoReload.splice(indexPotato, 1);
+          if (eachChicken.hasImpacted === false){
           this.chickenCage[indexChicken].img.src = "./images/chicken2.png";
           this.chickenCage[indexChicken].xDirection = 0;
           this.chickenCage[indexChicken].yDirection = 0;
           
-          let removeChicken = setTimeout(() => this.chickenCage.splice(indexChicken, 1), 500);
-          if (removeChicken === true) {
-          this.score = this.score + 10
+          let removeChicken = setTimeout(() => {
+            this.chickenCage.splice(indexChicken, 1)
+            this.score = this.score + 10
+          }, 500);
+          eachChicken.hasImpacted = true
           }
-        }
+        
+        } 
       });
     });
   };
@@ -68,16 +76,23 @@ class Game {
         ) {
           eachPig.y = eachPig.y - 70;
           this.potatoReload.splice(indexPotato, 1);
+          
         } else if (eachPig.y < 0) {
+          
           this.pigCage[indexPig].img.src = "./images/pig2.png";
           this.pigCage[indexPig].xDirection = 0;
           this.pigCage[indexPig].yDirection = 0;
           eachPig.y = 0
-          let removePig = setTimeout(() => this.pigCage.splice(indexPig, 1), 500);
-          if(removePig === true){
+          let removePig = setTimeout(() => {
+            
+            this.pigCage.splice(indexPig, 1)
             this.score = this.score + 50
-            console.log(this.score)
-          }
+          }, 500);
+
+          // if(removePig === true){
+          //   this.score = this.score + 50
+          //   console.log(this.score)
+          // }
 
         }
       });
