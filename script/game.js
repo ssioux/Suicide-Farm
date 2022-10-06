@@ -49,8 +49,8 @@ class Game {
           this.chickenCage[indexChicken].img.src = "./images/chicken2.png";
           this.chickenCage[indexChicken].xDirection = 0;
           this.chickenCage[indexChicken].yDirection = 0;
-          this.score += 10;
           setTimeout(() => this.chickenCage.splice(indexChicken, 1), 500);
+          setTimeout(() => this.score += 10, 500);
         }
       });
     });
@@ -71,9 +71,10 @@ class Game {
           this.pigCage[indexPig].img.src = "./images/pig2.png";
           this.pigCage[indexPig].xDirection = 0;
           this.pigCage[indexPig].yDirection = 0;
-          this.score += 50;
 
           setTimeout(() => this.pigCage.splice(indexPig, 1), 500);
+          setTimeout(() => this.score += 50, 500);
+
         }
       });
     });
@@ -92,9 +93,10 @@ class Game {
           this.rabbitCage[indexRabbit].img.src = "./images/rabbit2.png";
           this.rabbitCage[indexRabbit].xDirection = 0;
           this.rabbitCage[indexRabbit].yDirection = 0;
-          this.score += 30;
-          setTimeout(() => this.rabbitCage.splice(indexRabbit, 1)
-          this.score += 30, 500);
+          
+          
+          setTimeout(() => this.rabbitCage.splice(indexRabbit, 1), 500);
+          setTimeout(() => this.score += 30, 500);
         }
       });
     });
@@ -185,7 +187,7 @@ class Game {
   drawScore = () => {
     ctx.font = "30px Verdana";
     let scoreInGame = `Score: ${this.score}`;
-    ctx.strokeText(scoreInGame, canvas.width / 2, 50);
+    ctx.strokeText(scoreInGame, canvas.width * 0.4, 50);
     ctx.fillStyle = "orange";
   };
 
