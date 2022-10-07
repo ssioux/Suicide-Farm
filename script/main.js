@@ -7,11 +7,8 @@ const startScreen = document.querySelector("#startmenu-screen");
 const startBtn = document.querySelector(".start-btn");
 const gameOverScreen = document.querySelector("#gameover-screen");
 const reStartBtn = document.querySelector("#restart-btn");
-const start2Btn = document.querySelector(".start2-btn")
 
-const scoreNumber = document.querySelector("#gameover-screen p span")
-
-
+const scoreNumber = document.querySelector("#gameover-screen p span");
 
 let gameClass;
 
@@ -34,17 +31,10 @@ const reStartGame = () => {
   gameClass.gameMusic.play();
 };
 
-const changeButtonPoss = () => {
-start2Btn.style.display = "grid"
-startBtn.style.display = "none"
-}
-
 // ! ADD EVENT LISTENERS
 
-startBtn.addEventListener("click", changeButtonPoss);
+startBtn.addEventListener("click", startGame);
 reStartBtn.addEventListener("click", reStartGame);
-
-start2Btn.addEventListener("click", startGame)
 
 window.addEventListener("keydown", (event) => {
   if (event.code === "Enter") {

@@ -7,12 +7,12 @@ class Game {
     this.floor = new Image();
     this.floor.src = "./images/floor1.jpeg";
     // Lives
-    this.health = new Image()
-    this.health.src = "./images/lives3.png"
+    this.health = new Image();
+    this.health.src = "./images/lives3.png";
 
     // Objets
     this.humanClass = new Human();
-   
+
     // ArraysObjets
     this.chickenCage = [];
     this.pigCage = [];
@@ -35,24 +35,19 @@ class Game {
   // ! METHODS
 
   scoreGameOverScreen = () => {
-
-  scoreNumber.innerText = gameClass.score
-  console.log(scoreNumber.innerText)
-
-
-  }
+    scoreNumber.innerText = gameClass.score;
+    console.log(scoreNumber.innerText);
+  };
 
   removingPotatoes = () => {
-
     this.potatoReload.forEach((eachPotato) => {
       if (eachPotato.y < 0) {
-        console.log("saliendo")
+        console.log("saliendo");
 
-        this.potatoReload.splice(eachPotato, 1)
-      
+        this.potatoReload.splice(eachPotato, 1);
       }
-    })
-  }
+    });
+  };
 
   //   ************** HIT
 
@@ -150,7 +145,6 @@ class Game {
           eachStrongPig.yDirection = 1;
           eachStrongPig.y = eachStrongPig.y - 90;
         } else if (eachStrongPig.y < 0 && eachStrongPig.hadImpacted === false) {
-          
           this.strongPigCage[indexStrongPig].img.src = "./images/pig2.png";
           this.strongPigCage[indexStrongPig].yDirection = 0;
           eachStrongPig.y = 0;
@@ -173,7 +167,7 @@ class Game {
       let newStrongPig = new StrongPig();
       this.strongPigCage.push(newStrongPig);
     }
-  }
+  };
 
   addPotato = () => {
     let newPotato = new Potato(this.humanClass.x + 40, this.humanClass.y - 5);
@@ -214,40 +208,43 @@ class Game {
   //   ************** WOUND
 
   chickenHumanWound = () => {
-    this.chickenCage.forEach((eachChicken) => {
+    this.chickenCage.forEach((eachChicken, index) => {
       if (
         this.humanClass.x < eachChicken.x + eachChicken.w &&
         this.humanClass.x + this.humanClass.w > eachChicken.x &&
         this.humanClass.y < eachChicken.y + eachChicken.h &&
         this.humanClass.h + this.humanClass.y > eachChicken.y
       ) {
-        this.gameOver();
+        this.humanClass.lives -= 1;
+        this.chickenCage.splice(index, 1);
       }
     });
   };
 
   rabbitHumanWound = () => {
-    this.rabbitCage.forEach((eachRabbit) => {
+    this.rabbitCage.forEach((eachRabbit, index) => {
       if (
         this.humanClass.x < eachRabbit.x + eachRabbit.w &&
         this.humanClass.x + this.humanClass.w > eachRabbit.x &&
         this.humanClass.y < eachRabbit.y + eachRabbit.h &&
         this.humanClass.h + this.humanClass.y > eachRabbit.y
       ) {
-        this.gameOver();
+        this.humanClass.lives -= 1;
+        this.rabbitCage.splice(index, 1);
       }
     });
   };
 
   pigHumanWound = () => {
-    this.pigCage.forEach((eachPig) => {
+    this.pigCage.forEach((eachPig, index) => {
       if (
         this.humanClass.x < eachPig.x + eachPig.w &&
         this.humanClass.x + this.humanClass.w > eachPig.x &&
         this.humanClass.y < eachPig.y + eachPig.h &&
         this.humanClass.h + this.humanClass.y > eachPig.y
       ) {
-        this.gameOver();
+        this.humanClass.lives -= 1;
+        this.pigCage.splice(index, 1);
       } else if (eachPig.y > canvas.height) {
         this.gameOver();
       }
@@ -262,8 +259,8 @@ class Game {
         this.humanClass.y < eachStrongPig.y + eachStrongPig.h &&
         this.humanClass.h + this.humanClass.y > eachStrongPig.y
       ) {
-        this.humanClass.lives -= 1
-        this.strongPigCage.splice(index, 1)
+        this.humanClass.lives -= 1;
+        this.strongPigCage.splice(index, 1);
       } else if (eachStrongPig.y > canvas.height) {
         this.gameOver();
       }
@@ -273,9 +270,19 @@ class Game {
   //   ************** DRAWS
 
   drawLives = () => {
+    if (this.humanClass.lives === 3) {
+      ctx.drawImage(this.health, 10, 650, 100, 60);
+    } else if (this.humanClass.lives === 2) {
+      this.health.src = "./images/lives2.png";
+      ctx.drawImage(this.health, 10, 650, 100, 60);
+    } else if (this.humanClass.lives === 1) {
+      this.health.src = "./images/lives1.png";
 
-    ctx.drawImage(this.health, 20, 590, 60, 40);
-  }
+      ctx.drawImage(this.health, 10, 650, 100, 60);
+    } else if (this.humanClass.lives === 0) {
+      this.gameOver();
+    }
+  };
 
   drawScore = () => {
     ctx.font = "30px Verdana";
@@ -296,13 +303,8 @@ class Game {
     canvas.style.display = "none";
     gameOverScreen.style.display = "grid";
     this.gameMusic.pause();
-    this.scoreGameOverScreen()
+    this.scoreGameOverScreen();
   };
-  checkLives = () => {
-    if (this.humanClass.lives === 0) {
-      this.gameOver()
-    }
-  }
 
   gameLoop = () => {
     this.frames = this.frames + 1;
@@ -311,14 +313,14 @@ class Game {
     ctx.clearRect(0, 0, canvas.Width, canvas.height);
 
     // * 2. Acciones y movimientos de los elementos
-    this.checkLives()
+
     //             StrongPig addLoop
-    
-    this.addStrongPig()
+
+    this.addStrongPig();
     this.strongPigCage.forEach((eachStrongPig) => {
-      eachStrongPig.movementStrongPig()
-    })
-    this.strongPigHumanWound()
+      eachStrongPig.movementStrongPig();
+    });
+    this.strongPigHumanWound();
 
     this.addPig();
     this.pigCage.forEach((eachPig) => {
@@ -340,7 +342,7 @@ class Game {
     this.potatoChickenHit();
     this.potatoPigHit();
     this.potatoRabbitHit();
-    this.potatoStrongPigHit()
+    this.potatoStrongPigHit();
 
     //         Chicken addLoop
     this.addChicken();
@@ -354,7 +356,7 @@ class Game {
     this.chickenHumanWound();
 
     //                -- Potato Conditions & Loops --
-    this.removingPotatoes()
+    this.removingPotatoes();
 
     this.potatoReload.forEach((eachPotato) => {
       eachPotato.potatoDirection();
@@ -367,7 +369,7 @@ class Game {
 
     // * 3. Dibujado de los elementos
     this.drawFloor();
-    this.drawLives()
+    this.drawLives();
     this.drawScore();
     this.humanClass.drawHuman();
     this.potatoReload.forEach((eachPotato) => {
@@ -377,7 +379,6 @@ class Game {
     this.rabbitCage.forEach((eachRabbit) => {
       eachRabbit.drawRabbit();
     });
-    
 
     this.strongPigCage.forEach((eachStrongPig) => {
       eachStrongPig.drawStrongPig();
