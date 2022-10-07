@@ -7,10 +7,14 @@ const startScreen = document.querySelector("#startmenu-screen");
 const startBtn = document.querySelector(".start-btn");
 const gameOverScreen = document.querySelector("#gameover-screen");
 const reStartBtn = document.querySelector("#restart-btn");
-
 const scoreNumber = document.querySelector("#gameover-screen p span");
+const nickName = document.querySelector("#name");
+const addBtn = document.querySelector("#add-btn");
+const nameInGameOver = document.querySelector("#gameover-screen h1");
 
 let gameClass;
+
+
 
 // ! STATE MANAGEMENT FUNCTIONS
 // startGame
@@ -31,11 +35,15 @@ const reStartGame = () => {
   gameClass.gameMusic.play();
 };
 
+const inName = () => {
+  nameInGameOver.innerText = nickName.value 
+}
+
 // ! ADD EVENT LISTENERS
 
 startBtn.addEventListener("click", startGame);
 reStartBtn.addEventListener("click", reStartGame);
-
+addBtn.addEventListener("click", inName)
 window.addEventListener("keydown", (event) => {
   if (event.code === "Enter") {
     gameClass.noShoot = false;

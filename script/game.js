@@ -28,6 +28,7 @@ class Game {
 
     // Audio
     this.gameMusic = new Audio();
+    this.gameMusic.volume = 0.05;
     this.gameMusic.src =
       "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3";
   }
@@ -36,14 +37,11 @@ class Game {
 
   scoreGameOverScreen = () => {
     scoreNumber.innerText = gameClass.score;
-    console.log(scoreNumber.innerText);
   };
 
   removingPotatoes = () => {
     this.potatoReload.forEach((eachPotato) => {
       if (eachPotato.y < 0) {
-        console.log("saliendo");
-
         this.potatoReload.splice(eachPotato, 1);
       }
     });
