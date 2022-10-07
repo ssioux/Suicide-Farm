@@ -4,7 +4,7 @@ const canvas = document.querySelector("#my-canvas");
 const ctx = canvas.getContext("2d");
 //                    * DOM *
 const startScreen = document.querySelector("#startmenu-screen");
-const leftMenu = document.querySelector("#left-menu")
+const leftMenu = document.querySelector("#left-menu");
 const startBtn = document.querySelector(".start-btn");
 const gameOverScreen = document.querySelector("#gameover-screen");
 const reStartBtn = document.querySelector("#restart-btn");
@@ -15,12 +15,9 @@ const nameInGameOver = document.querySelector("#gameover-screen h1");
 
 let gameClass;
 
-
-
 // ! STATE MANAGEMENT FUNCTIONS
 // startGame
 const startGame = () => {
-
   startScreen.style.display = "none";
   canvas.style.display = "grid";
   gameClass = new Game();
@@ -38,14 +35,14 @@ const reStartGame = () => {
 };
 
 const inName = () => {
-  nameInGameOver.innerText = nickName.value 
-}
+  nameInGameOver.innerText = nickName.value;
+};
 
 // ! ADD EVENT LISTENERS
 
 startBtn.addEventListener("click", startGame);
 reStartBtn.addEventListener("click", reStartGame);
-addBtn.addEventListener("click", inName)
+addBtn.addEventListener("click", inName);
 window.addEventListener("keydown", (event) => {
   if (event.code === "Enter") {
     gameClass.noShoot = false;

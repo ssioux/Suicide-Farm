@@ -8,11 +8,10 @@ class Chicken {
     this.y = yParam;
     this.w = 60;
     this.h = 60;
-    this.hadImpacted = false
-    
+    this.hadImpacted = false;
 
-    this.xDirection = 1
-    this.yDirection = 1
+    this.xDirection = 1;
+    this.yDirection = 1;
   }
   // CLASS METHODS
 
@@ -22,8 +21,8 @@ class Chicken {
   };
 
   movementChicken = () => {
-    this.x = this.x + (this.xDirection * 2);
-    this.y = this.y + (this.yDirection * 2);
+    this.x = this.x + this.xDirection * 2;
+    this.y = this.y + this.yDirection * 2;
   };
 
   wallCollideChicken = () => {
