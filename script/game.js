@@ -38,7 +38,7 @@ class Game {
   scoreGameOverScreen = () => {
     scoreNumber.innerText = gameClass.score;
   };
-
+  //   ************** removing potatoes from his array
   removingPotatoes = () => {
     this.potatoReload.forEach((eachPotato) => {
       if (eachPotato.y < 0) {

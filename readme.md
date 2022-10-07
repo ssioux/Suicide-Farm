@@ -1,103 +1,128 @@
 # SUICIDE FARM
 
 
-## [See the Game](www.your-url-here.com)
-NOTE: above link will be added later
+## [See Suicide Farm](https://ssioux.github.io/Suicide-Farm/)
+
 
 # Description
 
-You will have to save the Earth by protecting not letting scape the Evil Animals out of the barnyard or not letting them wound you.
+You dropped a liquid for an experiment with animals, and they transformed more big and strong adopting a human form.
+
+You will have to save the Earth by protecting not letting scape the Evil Animals out of the barnyard or not letting them wound you. You have three lives. Try to survive to get more points.
 
 # Main Functionalities
 
-- List here the main functionalities your game will have
+- Player movement, up, right, down, left.
+- Throwing potatoes up (or foward in playerPOV) you can kill enemies.
+- Player die when lives are 0.
+- Player lose if some pig reach the door.
+- Enemies apear randomly.
 
 # Backlog Functionalities
 
-- List here the cool (but not essential) functionalities your game could have
+- When some enemie is hitted by a potatoe the enemie stop opening the mouth like is dying.
+- The pig goes back if is hitted by a potato and dyes if you back it up against the wall.
 
 # Proyect Structure
 
-* main.js
-    - variables
-    - startGame
-    - restartGame
-* game.js
-    - drawBackground
-    - chickenHumanWound()
-    - rabbitWound()
-    - humanPigWound()
-    - gameLoop()
 
-* chicken.js
-    - constructor()
-        this.img = new Image();
-        this.img.src = ""
-        this.x
-        this.y
-        this.w
-        this.h
-        this.speed
-    - drawChicken(Method)
-    - collideWall()
-* rabbit.js
-    - constructor()
-    - drawRabbit()
-    - collideWall()
-* pig.js
-    - constructor()
-        this.img = new Image();
-        this.img.src = ""
-        this.x
-        this.y
-        this.w
-        this.h
-        this.speed
-    - drawChicken(Method)
-    - collideWall()
+    
+
+
+
 * potato.js
-    - constructor()
 
-- Recommended: Inside each file you can list the functions, clases, properties and methods you will need.
+    - constructor(){this.img, this.img.src, this.x, this.y, this.w, this.h, this.hadImpacted, this.yDirection}
+    - drawPotato()
+    - potatoDirection()
 
-Example:
+
+
 
 ## main.js
 
-- startGame()
+    - Global variables
+    - startGame
+    - restartGame
+    - addEventListener's
 
 ## game.js
 
-- Game () {
-    this.player;
-}
-- gameLoop () {}
-- checkCollisions () {}
+    - Game(){}
+    - scoreGameOverScreen()
+    - removingPotatoes()
 
-## player.js 
+    - potatoChickenHit()
+    - potatoPigHit()
+    - potatoRabbitHit()
+    - potatoStrongPigHit()
 
-- Player () {
-    this.x;
-    this.y;
-    this.w;
-    this.h;
-}
-- drawPlayer () {}
-- movePlayer () {}
+    - addPotato()
+    - addChicken()
+    - addRabbit()
+    - addPig()
+    - addStrongPig()
+
+    - strongPigHumanWound()
+    - pigHumanWound()
+    - ChickenHumanWound()
+    - rabbitHumanWound()
+
+    - drawLives()
+    - drawScore()
+    - drawFloor()
+    
+    - gameOver()
+    - gameLoop()
+
+## human.js 
+
+    - constructor(){this.img, this.img.src, this.x, this.y, this.w, this.h, this.speed, this.lives}
+    - drawhuman()
+
+# chicken.js 
+
+    - constructor(){this.img, this.img.src, this.x, this.y, this.w, this.h, this.hadImpacted, this.xDirection, this.yDirection}
+    - drawChicken()
+    - collideWall()
+    - movementChicken()
+
+# rabbit.js 
+
+    - constructor(){this.img, this.img.src, this.x, this.y, this.w, this.h, this.hadImpacted, this.xDirection, this.yDirection}
+    - drawRabbit()
+    - collideWall()
+    - movementChicken()
+
+# pig.js 
+
+    - constructor(){this.img, this.img.src, this.x, this.y, this.w, this.h, this.hadImpacted, this.yDirection}
+    - drawPig()
+    - movementChicken()
+
+# strongPig.js
+
+    - constructor(){this.img, this.img.src, this.x, this.y, this.w, this.h, this.hadImpacted, this.yDirection}
+    - drawStrongPig()
+    - movementStrongPig()
+
+# potato.js
+
+    - constructor(){this.img, this.img.src, this.x, this.y, this.w, this.h, this.hadImpacted, this.yDirection}
+    - drawPotato()
+    - potatoDirection()
+
+
 
 # States and Transitions
 
-- Start Screen, Game Screen, Score Screen, etc.
+- Start Screen, Game Screen, Score Screen.
 
-# Tasks (Optional)
+# Extra Links
 
-- List of individual Tasks you will need to finish the game from zero to an amazing game!
-- Note: If using Trello or github proyect to keep track of tasks, then you can remove this section.
-
-# Extra Links (The links can be added later when available)
-
-### Trello
-[Link](www.your-url-here.com)
+### GitHub
+[Repository](https://github.com/ssioux/Suicide-Farm)
+[Game](https://ssioux.github.io/Suicide-Farm/)
 
 ### Slides
 [Link](www.your-url-here.com)

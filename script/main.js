@@ -4,6 +4,7 @@ const canvas = document.querySelector("#my-canvas");
 const ctx = canvas.getContext("2d");
 //                    * DOM *
 const startScreen = document.querySelector("#startmenu-screen");
+const leftMenu = document.querySelector("#left-menu")
 const startBtn = document.querySelector(".start-btn");
 const gameOverScreen = document.querySelector("#gameover-screen");
 const reStartBtn = document.querySelector("#restart-btn");
@@ -19,6 +20,7 @@ let gameClass;
 // ! STATE MANAGEMENT FUNCTIONS
 // startGame
 const startGame = () => {
+
   startScreen.style.display = "none";
   canvas.style.display = "grid";
   gameClass = new Game();
