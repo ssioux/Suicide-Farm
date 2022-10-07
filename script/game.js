@@ -253,15 +253,16 @@ class Game {
   };
 
   strongPigHumanWound = () => {
-    this.strongPigCage.forEach((eachstrongPig) => {
+    this.strongPigCage.forEach((eachStrongPig, index) => {
       if (
-        this.humanClass.x < eachstrongPig.x + eachstrongPig.w &&
-        this.humanClass.x + this.humanClass.w > eachstrongPig.x &&
-        this.humanClass.y < eachstrongPig.y + eachstrongPig.h &&
-        this.humanClass.h + this.humanClass.y > eachstrongPig.y
+        this.humanClass.x < eachStrongPig.x + eachStrongPig.w &&
+        this.humanClass.x + this.humanClass.w > eachStrongPig.x &&
+        this.humanClass.y < eachStrongPig.y + eachStrongPig.h &&
+        this.humanClass.h + this.humanClass.y > eachStrongPig.y
       ) {
-        this.gameOver();
-      } else if (eachstrongPig.y > canvas.height) {
+        this.humanClass.lives -= 1
+        this.strongPigCage.splice(index, 1)
+      } else if (eachStrongPig.y > canvas.height) {
         this.gameOver();
       }
     });
@@ -290,6 +291,11 @@ class Game {
     this.gameMusic.pause();
     this.scoreGameOverScreen()
   };
+  checkLives = () => {
+    if (this.humanClass.lives === 0) {
+      this.gameOver()
+    }
+  }
 
   gameLoop = () => {
     this.frames = this.frames + 1;
@@ -298,8 +304,9 @@ class Game {
     ctx.clearRect(0, 0, canvas.Width, canvas.height);
 
     // * 2. Acciones y movimientos de los elementos
-
+    this.checkLives()
     //             StrongPig addLoop
+    
     this.addStrongPig()
     this.strongPigCage.forEach((eachStrongPig) => {
       eachStrongPig.movementStrongPig()

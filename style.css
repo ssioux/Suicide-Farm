@@ -111,6 +111,26 @@ margin-left: 7px;
   margin: 30px 30px 0px 100px;
 }
 
+.start2-btn {
+  
+  position: relative;
+  width: 70px;
+  height: 50px;
+  left: 65px;
+  bottom: 130px;
+  background-color: rgb(66, 62, 62);
+  color: white;
+  font-size: 30px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+  border-radius: 150px;
+  border-style: ridge;
+
+  margin: 30px 30px 0px 100px;
+}
+
 #restart-btn {
   width: 200px;
   height: 50px;
@@ -127,6 +147,6 @@ margin-left: 7px;
 }
 
 #my-canvas,
-#gameover-screen {
+#gameover-screen, .start2-btn {
   display: none;
 }
