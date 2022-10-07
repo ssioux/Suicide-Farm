@@ -8,7 +8,7 @@
 
 You dropped a liquid for an experiment with animals, and they transformed more big and strong adopting a human form.
 
-You will have to save the Earth by protecting not letting scape the Evil Animals out of the barnyard or not letting them wound you. You have three lives. Try to survive to get more points.
+You will have to save the Earth, not letting scape the Evil Animals out of the barnyard or not letting them wound you. You have three lives. Try to survive to get more points.
 
 # Main Functionalities
 
@@ -22,21 +22,9 @@ You will have to save the Earth by protecting not letting scape the Evil Animals
 
 - When some enemie is hitted by a potatoe the enemie stop opening the mouth like is dying.
 - The pig goes back if is hitted by a potato and dyes if you back it up against the wall.
+- Image with the number of lives.
 
 # Proyect Structure
-
-
-    
-
-
-
-* potato.js
-
-    - constructor(){this.img, this.img.src, this.x, this.y, this.w, this.h, this.hadImpacted, this.yDirection}
-    - drawPotato()
-    - potatoDirection()
-
-
 
 
 ## main.js
@@ -125,4 +113,4 @@ You will have to save the Earth by protecting not letting scape the Evil Animals
 [Game](https://ssioux.github.io/Suicide-Farm/)
 
 ### Slides
-[Link](www.your-url-here.com)
+[Link](https://docs.google.com/presentation/d/1J6bgF6gsY3GZVKtexk8bQrepqMuEZbPD5bTpUPXfAZk/edit#slide=id.p)
