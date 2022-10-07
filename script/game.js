@@ -6,16 +6,18 @@ class Game {
     // Background
     this.floor = new Image();
     this.floor.src = "./images/floor1.jpeg";
+    // Lives
+    this.health = new Image()
+    this.health.src = "./images/lives3.png"
 
     // Objets
     this.humanClass = new Human();
-
+   
     // ArraysObjets
     this.chickenCage = [];
     this.pigCage = [];
     this.strongPigCage = [];
     this.rabbitCage = [];
-    this.fastRabbitCage = [];
     this.potatoReload = [];
 
     // Others
@@ -270,6 +272,11 @@ class Game {
 
   //   ************** DRAWS
 
+  drawLives = () => {
+
+    ctx.drawImage(this.health, 20, 590, 60, 40);
+  }
+
   drawScore = () => {
     ctx.font = "30px Verdana";
 
@@ -360,6 +367,7 @@ class Game {
 
     // * 3. Dibujado de los elementos
     this.drawFloor();
+    this.drawLives()
     this.drawScore();
     this.humanClass.drawHuman();
     this.potatoReload.forEach((eachPotato) => {
